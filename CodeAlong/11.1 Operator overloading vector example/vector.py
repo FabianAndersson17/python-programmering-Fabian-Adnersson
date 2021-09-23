@@ -1,4 +1,5 @@
-from typing import Type
+#from typing import Type
+from plotter import PlotVectors
 
 
 class Vector:
@@ -17,16 +18,34 @@ class Vector:
 
     @property
     def numbers(self) -> tuple:
+        """Read only property that returnes the numbers"""
         return self._numbers
 
         
     # (2,3) + (1,1,1) not okay
     # (2,3) + (1,1) = (3,4)
-    def __add__(self, other: "Vector") -> "Vector":
+    def __add__(self, other: "Vector") -> "Vector":  # Overloads the plus operator
+        """Adds two vertors of same dimensions using + operator"""
         if self.validate_vectors(other):
             numbers = (a+b for a,b in zip(self.numbers, other.numbers))
             return Vector(*numbers)
     
+    def __sub__(self, other: "Vector") -> "Vector":
+        """Subtracts two vertors of same dimensions using - operator"""
+        if self.validate_vectors(other):
+            numbers = (a-b for a,b in zip(self.numbers, other.numbers))
+            return Vector(*numbers)
+        
+    def __mul__(self, value: float) -> "Vector":
+        if not isinstance(value, (float, int)):
+            raise TypeError(f"Value must be float or int not {type (value)}")
+
+        numbers = (value*a for a in self.numbers)
+        return Vector(*numbers)
+
+    def __rmul__(self, value: float) -> "Vector":
+        return self*value
+
     def __len__(self) -> int:
         """Returns number of components in a Vector not the Euclidan lenght"""
         return len(self.numbers)
@@ -45,3 +64,21 @@ class Vector:
 
     def __getitem__(self, item: int) -> float:
         return self.numbers[item]
+
+    def __eq__(self, other) -> bool:
+        if not self.validate_vectors(other):
+            return False
+
+        for num1, num2 in zip(self.numbers, other.numbers):
+            if num1 != num2:
+                return False
+        
+        return True
+
+    def plot(self, *others: "Vector") -> None:
+        # TODO: erroechecking
+
+        # Composistion -> Vector has a PlotVectors object
+        plot_vector = PlotVectors(self, *others)
+
+        plot_vector.plot()

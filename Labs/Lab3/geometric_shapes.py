@@ -12,10 +12,6 @@ class Geometric_Shapes():
             raise ValueError(f"yPoint needs to be a float or an int not {type(self.yPoint)}")
         if not isinstance(self.radius, (float, int)):
             raise ValueError(f"radius needs to be a float or an int not {type(self.radius)}")
-        try:
-            self.xPoint
-        except ValueError as err:
-            print(err)
 
     def area_calulator(self) -> float:
         return(self.diameter * self.diameter)

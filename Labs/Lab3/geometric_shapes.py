@@ -22,8 +22,9 @@ class Geometric_Shapes():
     def __eq__(self, other: "Geometric_Shapes") -> bool:
         return other.radius == self.radius and other.diameter == self.diameter
 
-    def translate(self) -> float:
-        pass
+    def translate(self, newXpoint, newYpoint) -> float:
+        self.xPoint = newXpoint
+        self.yPoint = newYpoint
 
     def is_inside_point(self) -> True:
         pass

@@ -19,11 +19,9 @@ class Geometric_Shapes():
     def circumference_calulator(self) -> float:
         return self.diameter*4
 
-    def __eq__(self, other) -> bool:
-        if other == self and other == self.area_calulator and other == self.circumference_calulator:
-            return "The shapes are the same size"
-        else:
-            return "The shapes are not the same size"
+    def __eq__(self, other: "Geometric_Shapes") -> bool:
+        return other.radius == self.radius and other.diameter == self.diameter
+
     def translate(self) -> float:
         pass
 

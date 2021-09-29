@@ -25,10 +25,12 @@ class Geometric_Shapes():
     def translate(self, newXpoint, newYpoint) -> float:
         self.xPoint = newXpoint
         self.yPoint = newYpoint
-        return (f"New point set to {self.xPoint}, {self.yPoint}")
 
-    def is_inside_point(self) -> True:
-        pass
+    def is_inside(self) -> True:
+        if self.xPoint <= self.radius and self.yPoint <= self.radius:
+            return True
+        else:
+            return False
 
     def __repr__(self) -> str:
         return (f"x-coordinate = {self.xPoint}, y-coordinate = {self.yPoint}, radius = {self.radius}, diameter = {self.diameter}")

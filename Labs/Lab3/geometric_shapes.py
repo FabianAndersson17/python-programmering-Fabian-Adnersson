@@ -12,6 +12,10 @@ class Geometric_Shapes():
             raise ValueError(f"yPoint needs to be a float or an int not {type(self.yPoint)}")
         if not isinstance(self.radius, (float, int)):
             raise ValueError(f"radius needs to be a float or an int not {type(self.radius)}")
+        if not -25 <= self.xPoint <= 25:
+            raise ValueError(f"The X coordinate needs to be between -25 and 25 not {self.xPoint}")
+        if not -25 <= self.yPoint <= 25:
+            raise ValueError(f"The Y coordinate needs to be between -25 and 25 not {self.yPoint}")
 
     def area_calulator(self) -> float:
         return(self.diameter * self.diameter)
@@ -27,7 +31,7 @@ class Geometric_Shapes():
         self.yPoint = newYpoint
 
     def is_inside(self) -> True:
-        if self.xPoint <= self.radius and self.yPoint <= self.radius:
+        if self.xPoint <= self.radius and self.yPoint <= self.radius and self.xPoint <= self.diameter and self.yPoint <= self.diameter:
             return True
         else:
             return False
@@ -48,6 +52,9 @@ class Square(Geometric_Shapes):
 
     def translate(self) -> float:
         return super().translate()
+
+    def __eq__(self, other: "Geometric_Shapes") -> bool:
+        return super().__eq__(other)
     
     def is_inside_point(self) -> True:
         if self.xPoint <= self.diameter and self.xPoint <= self.height and self.yPoint <= self.diameter and self.yPoint <= self.height:
@@ -57,3 +64,25 @@ class Square(Geometric_Shapes):
 
     def __repr__(self) -> str:
         return (f"x-coordinate = {self.xPoint}, y-coordinate = {self.yPoint}, height = {self.height}, widht = {self.diameter}")
+
+class Circle(Geometric_Shapes):
+    def __init__(self, xPoint: float, yPoint: float, radius: float) -> None:
+        super().__init__(xPoint, yPoint, radius)
+    
+    def area_calulator(self) -> float:
+        return (self.radius**2)*math.pi
+
+    def circumference_calulator(self) -> float:
+        return self.diameter * math.pi
+
+    def translate(self, newXpoint, newYpoint) -> float:
+        return super().translate(newXpoint, newYpoint)
+
+    def __eq__(self, other: "Geometric_Shapes") -> bool:
+        return super().__eq__(other)
+
+    def is_inside(self) -> True:
+        return super().is_inside()
+        
+    def __repr__(self) -> str:
+        return super().__repr__()

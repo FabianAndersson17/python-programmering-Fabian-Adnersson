@@ -25,6 +25,7 @@ class Geometric_Shapes():
     def translate(self, newXpoint, newYpoint) -> float:
         self.xPoint = newXpoint
         self.yPoint = newYpoint
+        return (f"New point set to {self.xPoint}, {self.yPoint}")
 
     def is_inside_point(self) -> True:
         pass

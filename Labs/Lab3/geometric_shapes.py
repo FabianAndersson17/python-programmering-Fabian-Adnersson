@@ -50,7 +50,10 @@ class Square(Geometric_Shapes):
         return super().translate()
     
     def is_inside_point(self) -> True:
-        return super().is_inside_point()
+        if self.xPoint <= self.diameter and self.xPoint <= self.height and self.yPoint <= self.diameter and self.yPoint <= self.height:
+            return True
+        else:
+            return False 
 
     def __repr__(self) -> str:
         return (f"x-coordinate = {self.xPoint}, y-coordinate = {self.yPoint}, height = {self.height}, widht = {self.diameter}")

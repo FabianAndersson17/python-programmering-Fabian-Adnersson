@@ -1,5 +1,6 @@
 import math ## Imports the math module
 
+## TODO add docsstrings and typeInting
 class Geometric_Shapes(): ## Creats class Geometric_Shapes
     def __init__(self, xPoint: float, yPoint: float) -> None: ## Gives Geometric_Shapes. Self, xPoint and yPoint parameters
         self.xPoint = xPoint ## Creats self.xPoint as a variable and gives it the value of the xPoint parameter

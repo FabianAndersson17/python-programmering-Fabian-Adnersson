@@ -14,9 +14,6 @@ class Geometric_Shapes():
         if not -25 <= self.yPoint <= 25:
             raise ValueError(f"The Y coordinate needs to be between -25 and 25 not {self.yPoint}")
 
-    def __eq__(self, other) -> bool:
-        return False
-
     def translate(self, newXpoint, newYpoint) -> float:
         self.xPoint = newXpoint
         self.yPoint = newYpoint

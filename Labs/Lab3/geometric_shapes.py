@@ -24,7 +24,10 @@ class Geometric_Shapes():
         return self.diameter*4
 
     def __eq__(self, other: "Geometric_Shapes") -> bool:
-        return other.radius == self.radius and other.diameter == self.diameter
+        if  (other.diameter == self.diameter) and (other.area_calulator == self.area_calulator):
+            return True
+        else:
+            return False
 
     def translate(self, newXpoint, newYpoint) -> float:
         self.xPoint = newXpoint
@@ -53,8 +56,8 @@ class Square(Geometric_Shapes):
     def translate(self) -> float:
         return super().translate()
 
-    def __eq__(self, other: "Geometric_Shapes") -> bool:
-        return super().__eq__(other)
+    def __eq__(self, other: "Square") -> bool:
+        return other.diameter == self.diameter and other.height == self.height and other.area_calulator == self.area_calulator
     
     def is_inside_point(self) -> True:
         if self.xPoint <= self.diameter and self.xPoint <= self.height and self.yPoint <= self.diameter and self.yPoint <= self.height:

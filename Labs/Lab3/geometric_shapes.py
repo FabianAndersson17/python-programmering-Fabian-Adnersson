@@ -47,7 +47,7 @@ class Rectangle(Geometric_Shapes):
         return self.width * self.height
         
 
-    def circumference_calulator(self) -> float: ## Calulates the circumference of a rectangle
+    def circumference_calulator(self) -> float:
         """Takes the width multiplied by two and the height multiplied two and adds them together"""
         return self.width*2 + self.height*2
 

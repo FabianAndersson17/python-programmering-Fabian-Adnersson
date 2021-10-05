@@ -103,11 +103,23 @@ class Circle(Geometric_Shapes):
 
 class Cube(Rectangle):
     """Grandchild class that inherits from Rectangle and from Geometric_Shapes"""
-    def __init__(self, xPoint: float, yPoint: float, width: float, height: float, zPoint, depth) -> None:
+    def __init__(self, xPoint: float, yPoint: float, zPoint: float, width: float, height: float, depth: float) -> None:
         super().__init__(xPoint, yPoint, width, height)
 
         self.zPoint = zPoint
         self.depth = depth
+
+        if not isinstance(self.depth, (float, int)):
+            raise ValueError(f"The height must be a float or an int. Not: {type(self.depth)}")
+
+        if not 0 < self.depth <= 10: ## Checks if depth is above 0 but below 10
+            raise ValueError(f"The width needs to be above 1 but below 10. Not: {self.depth}")
+
+        if not isinstance(self.zPoint, (float, int)):
+            raise ValueError(f"yPoint needs to be a float or an int not {type(self.zPoint)}")
+
+        if not -25 <= self.zPoint <= 25: ## Checks if the z parameter is above -25 and 25
+            raise ValueError(f"The X coordinate needs to be between -25 and 25 not {self.zPoint}")
 
     def volume_calulator(self):
         return self.width * self.height * self.depth
@@ -131,10 +143,16 @@ class Cube(Rectangle):
 
 class Sphere(Circle):
     """Grandchild class that inherits from cirlce and Geometric_Shapes"""
-    def __init__(self, xPoint: float, yPoint: float, radius: float, zPoint: float) -> None:
+    def __init__(self, xPoint: float, yPoint: float, zPoint: float, radius: float) -> None:
         super().__init__(xPoint, yPoint, radius)
 
         self.zPoint = zPoint
+        
+        if not isinstance(self.zPoint, (float, int)):
+            raise ValueError(f"yPoint needs to be a float or an int not {type(self.zPoint)}")
+
+        if not -25 <= self.zPoint <= 25: ## Checks if the z parameter is above -25 and 25
+            raise ValueError(f"The X coordinate needs to be between -25 and 25 not {self.zPoint}")
 
     def volume_calulator(self):
         return (4/3)*math.pi*(self.radius**3)

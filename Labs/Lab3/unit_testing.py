@@ -1,16 +1,20 @@
 from geometric_shapes import Rectangle
 from geometric_shapes import Circle
+from geometric_shapes import Cube
 import unittest
 
 class Test_Geometric_Shapes(unittest.TestCase):
     def setUp(self) -> None:
-        self.xPoint, self.yPoint, self.width, self.height, self.radius = 0, 0, 3, 4, 5
+        self.xPoint, self.yPoint, self.zPoint, self.width, self.height, self.depth, self.radius = 0, 0, 0, 3, 4, 5, 5
 
     def creat_Rectangle(self) -> "Rectangle":
         return Rectangle(self.xPoint, self.yPoint, self.width, self.height)
 
     def creat_Circle(self) -> "Circle":
         return Circle(self.xPoint, self.yPoint, self.radius)
+
+    def creat_Cube(self) -> "Cube":
+        return Cube(self.xPoint, self.xPoint, self.zPoint, self.width, self.height, self.depth)
 
     ## Testing starts here - all tests must start with test_
 
@@ -91,6 +95,44 @@ class Test_Geometric_Shapes(unittest.TestCase):
     def test_circle_circumference(self):
         c1 = Circle(0, 0, 5)
         c1.circumference_calulator()
+
+    ## Test: Creat cube
+
+    def test_creat_cube(self):
+        cube = self.creat_Cube()
+
+    ## Test: Cube errors
+
+    def test_empty_cube(self):
+        with self.assertRaises(TypeError):
+            cube = Cube()
+
+    def test_creat_invalid_cube(self):
+        with self.assertRaises(ValueError):
+            cube = Cube(0, 0, 0, 5, "Två", 6)
+
+    ## Test __eq__ ==
+    def test_equal_cubes(self):
+        cube1 = self.creat_Cube()
+        cube2 = Cube(0, 0, 0, 3, 4, 5)
+        self.assertEqual(cube1, cube2)
+
+    def test_not_equal_cubes(self):
+        cube1 = self.creat_Cube()
+        cube2 = Cube(0, 0, 0, 3, 6 ,2)
+        self.assertNotEqual(cube1, cube2)
+
+    ## Test: Volume and surface
+    def test_cube_volume(self):
+        cube = Cube(0, 0, 0, 2, 2, 2)
+        cube.volume_calulator()
+
+    def test_cube_surface(self):
+        cube = Cube(0, 0, 0, 2, 2, 2)
+        cube.surface_calculator()
+
+        
+        
 
 if __name__ == "__main__":
     unittest.main()

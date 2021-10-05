@@ -127,4 +127,31 @@ class Cube(Rectangle):
         return self.width <= xParameter and self.width <= yParameter and self.width <= zParameter and self.height <= xParameter and self.height <= yParameter and self.height <= zParameter and self.depth <= xParameter and self.depth <= yParameter and self.depth <= zParameter
     
     def __repr__(self) -> str:
-        return (f"x-coordinate")
+        return (f"x-coordinate: {self.xPoint}, y-coordinate: {self.yPoint}, z-coordinate: {self.zPoint}, widht: {self.width}, height: {self.height}, depth: {self.depth}")
+
+class Sphere(Circle):
+    """Grandchild class that inherits from cirlce and Geometric_Shapes"""
+    def __init__(self, xPoint: float, yPoint: float, radius: float, zPoint: float) -> None:
+        super().__init__(xPoint, yPoint, radius)
+
+        self.zPoint = zPoint
+
+    def volume_calulator(self):
+        return (4/3)*math.pi*(self.radius**3)
+
+    def surface_calculator(self):
+        return 4*math.pi*(self.radius**2)
+    
+    def translate(self, newXpoint: float, newYpoint: float, newZpoint: float) -> float:
+        self.xPoint = newXpoint
+        self.yPoint = newYpoint
+        self.zPoint = newZpoint
+
+    def  __eq__(self, other: "Sphere") -> bool:
+        return super().__eq__(other)
+    
+    def is_inside(self, xParameter, yParameter, zParameter) -> True:
+        return self.radius <= xParameter and self.radius <= yParameter and self.radius <= zParameter
+
+    def __repr__(self) -> str:
+        return (f"x-coordinate: {self.xPoint}, y-coordinate: {self.yPoint}, z-coordinate: {self.zPoint}, radius: {self.radius}")

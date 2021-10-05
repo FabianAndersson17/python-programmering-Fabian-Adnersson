@@ -1,6 +1,5 @@
 import math ## Imports the math module
 
-## TODO add docsstrings and typeInting
 class Geometric_Shapes(): 
     """A parent class that keeps track of the x and y coordinates of a shape"""
     def __init__(self, xPoint: float, yPoint: float) -> None: ## Gives Geometric_Shapes. Self, xPoint and yPoint parameters
@@ -101,3 +100,31 @@ class Circle(Geometric_Shapes):
         
     def __repr__(self) -> str: ## Returns a string if no other method is in use
         return (f"x-coordinate: {self.xPoint}, y-coordinate: {self.yPoint}, radius: {self.radius}")
+
+class Cube(Rectangle):
+    """Grandchild class that inherits from Rectangle and from Geometric_Shapes"""
+    def __init__(self, xPoint: float, yPoint: float, width: float, height: float, zPoint, depth) -> None:
+        super().__init__(xPoint, yPoint, width, height)
+
+        self.zPoint = zPoint
+        self.depth = depth
+
+    def volume_calulator(self):
+        return self.width * self.height * self.depth
+        
+    def surface_calculator(self):
+        return 2*(self.width*self.height + self.width*self.height + self.height*self.depth)
+
+    def translate(self, newXpoint, newYpoint, newZpoint) -> float:
+        self.xPoint = newXpoint
+        self.yPoint = newYpoint
+        self.zPoint = newZpoint
+
+    def __eq__(self, other: "Cube"):
+        return other.width == self.width and other.height == self.height and other.depth == self.depth
+
+    def is_inside_point(self, xParameter: float, yParameter: float, zParameter: float) -> True:
+        return self.width <= xParameter and self.width <= yParameter and self.width <= zParameter and self.height <= xParameter and self.height <= yParameter and self.height <= zParameter and self.depth <= xParameter and self.depth <= yParameter and self.depth <= zParameter
+    
+    def __repr__(self) -> str:
+        return (f"x-coordinate")

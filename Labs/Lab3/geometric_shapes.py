@@ -6,7 +6,7 @@ class Geometric_Shapes():
         """Adds self, xPoint and yPoints as parameters"""
         self.xPoint = xPoint ## Creats self.xPoint as a variable and gives it the value of the xPoint parameter
         self.yPoint = yPoint
-        if not isinstance(self.xPoint, (float, int)): ## Checks if the input x and y parameters are floats of ints
+        if not isinstance(self.xPoint, (float, int)): ## Checks if the input x and y parameters are floats or ints
             raise ValueError(f"xPoint needs to be a float or an int not {type(self.xPoint)}")
         if not isinstance(self.yPoint, (float, int)):
             raise ValueError(f"yPoint needs to be a float or an int not {type(self.yPoint)}")
@@ -16,7 +16,7 @@ class Geometric_Shapes():
         if not -25 <= self.yPoint <= 25:
             raise ValueError(f"The Y coordinate needs to be between -25 and 25 not {self.yPoint}")
 
-    def translate(self, newXpoint, newYpoint) -> float:
+    def translate(self, newXpoint: float, newYpoint: float) -> float:
         """Creats new coordinates and changes the original coordinates to the new coordinates"""
         self.xPoint = newXpoint
         self.yPoint = newYpoint
@@ -138,7 +138,7 @@ class Cube(Rectangle):
         Fomula 2*(widht*height + widht*depth + height*depth)"""
         return 2*(self.width*self.height + self.width*self.depth + self.height*self.depth)
 
-    def translate(self, newXpoint, newYpoint, newZpoint) -> float:
+    def translate(self, newXpoint: float, newYpoint: float, newZpoint: float) -> float:
         self.xPoint = newXpoint
         self.yPoint = newYpoint
         self.zPoint = newZpoint
@@ -187,7 +187,7 @@ class Sphere(Circle):
         """Overloads the == operator and checks if two spheres are equal"""
         return super().__eq__(other)
     
-    def is_inside(self, xParameter, yParameter, zParameter) -> True:
+    def is_inside(self, xParameter: float, yParameter: float, zParameter: float) -> True:
         """Checks if given Sphere's radius is with in a x, y and z parameter"""
         return self.radius <= xParameter and self.radius <= yParameter and self.radius <= zParameter
 
